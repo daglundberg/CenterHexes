@@ -10,7 +10,6 @@ namespace CenterHexes
 		private GraphicsDeviceManager _graphics;
 		private SpriteBatch _spriteBatch;
 
-
 		Tiles _tiles;
 
 		public Game1()

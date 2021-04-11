@@ -31,8 +31,8 @@ namespace CenterHexes
 
 			_tiles = new List<Tile>();
 
-			_tiles.Add(new Tile(-2,-3));
-			_tiles.Add(new Tile(0, 0));
+			_tiles.Add(new Tile(1, 1));
+			_tiles.Add(new Tile(4, 4));
 
 			_area = GetBoundingRectangle(_tiles);
 		}
@@ -42,7 +42,11 @@ namespace CenterHexes
 		/// </summary>
 		public Rectangle GetBoundingRectangle(List<Tile> tiles)
 		{
-			int westMost, eastMost, northMost, southMost; westMost = eastMost = northMost = southMost = 0;
+			int westMost = int.MaxValue;
+			int eastMost = int.MinValue;
+			int northMost = int.MinValue;
+			int southMost = int.MaxValue;
+			
 			float height = 0;
 			float width = 0;
 
@@ -80,8 +84,8 @@ namespace CenterHexes
 					southMost = tile.Position.Y;
 			}
 
-			height += ((Math.Abs(southMost) + northMost) * VERTICALOFFSET + VERTICALOFFSET + C);
-			width += ((Math.Abs(westMost) + eastMost) * HEXWIDTH + HEXWIDTH) + offsetEast - offsetWest;
+			height += (((southMost*-1) + northMost) * VERTICALOFFSET + VERTICALOFFSET + C);
+			width += (((westMost*-1) + eastMost) * HEXWIDTH + HEXWIDTH) + offsetEast - offsetWest;
 
 			Vector2 pos = new Vector2(-(HEXWIDTH / 2), -(HEXHEIGHT / 2));
 			pos.Y += southMost * VERTICALOFFSET;
